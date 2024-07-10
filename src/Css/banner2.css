@@ -18,6 +18,7 @@
 
 .banner2-hero {
     position: relative;
+
 }
 
 .banner2-hero-image {
@@ -49,7 +50,7 @@
 
 .banner2-hero-content h1 {
     font-size: 36px;
-    margin-bottom:-10%;
+    margin-bottom:-90%;
     background-color: rgba(0, 0, 0, 0.532);
 }
 

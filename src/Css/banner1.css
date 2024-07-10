@@ -30,7 +30,9 @@ body {
 }
 .banner_main img {
     width: 100%;
-    height: auto;
+    height: 400px;
+    object-fit: cover;
+    border-radius: 8px 8px 0 0;
 }
 .banner_main h2 {
     color: #333333;
