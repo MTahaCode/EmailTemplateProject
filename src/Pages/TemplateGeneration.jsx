@@ -3,19 +3,21 @@ import "../Css/templateGeneration.css";
 import Template1 from '../Components/Template1.jsx';
 import Template2 from '../Components/Template2.jsx';
 import InputSection from '../Components/InputSection.jsx';
- 
+import Dropdown from 'react-bootstrap/Dropdown';
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 const TemplateGeneration = () => {
   const prompt = useRef(null);
   const [urlForShop, setUrlFromShop] = useState(null);
   const [uploadedImage, setUploadedImage] = useState(null);
- 
+
   const [result, setResult] = useState({
     description: "",
     promo: "",
     subject: "",
     image_url: "",
   });
- 
+
   const setResultToDefault = () => {
     setResult({
       description: "",
@@ -24,7 +26,7 @@ const TemplateGeneration = () => {
       image_url: "",
     });
   };
- 
+
   const handleSendPrompt = () => {
     const Obj = {
       "query": prompt.current.value,
@@ -43,7 +45,7 @@ const TemplateGeneration = () => {
       setResult(data);
     });
   };
- 
+
   const handleFileChange = (event) => {
     const file = event.target.files[0];
     if (file && file.type.startsWith('image/')) {
@@ -56,16 +58,28 @@ const TemplateGeneration = () => {
       alert('Please upload a valid image file.');
     }
   };
- 
+
   const handleRemoveImage = () => {
     setUploadedImage(null);
   };
- 
+
+  const handleCopyToClipboard = (templateId) => {
+    const templateElement = document.getElementById(templateId);
+    const range = document.createRange();
+    range.selectNode(templateElement);
+    window.getSelection().removeAllRanges();
+    window.getSelection().addRange(range);
+    document.execCommand("copy");
+    window.getSelection().removeAllRanges();
+    alert("Template copied to clipboard!");
+  };
+  
+
   return (
     <div className="fullScreen">
       <header className='header'>Template Generation</header>
       <div className="mainContainer">
-        
+
         {/* user input */}
         <InputSection 
           setUrlFromShop={setUrlFromShop} 
@@ -76,14 +90,42 @@ const TemplateGeneration = () => {
           handleFileChange={handleFileChange}
           handleRemoveImage={handleRemoveImage}
         />
- 
+
         {/* output */}
         <div className="outputContainer">
           {
             (result.image_url || uploadedImage) && (
             <>
-              <Template1 result={{ ...result, image_url: uploadedImage || result.image_url }} />
-              <Template2 result={{ ...result, image_url: uploadedImage || result.image_url }} />
+              <div className="template-container">
+                <Dropdown className="template-options">
+                  <Dropdown.Toggle variant="secondary" id="dropdown-basic">
+                    •••
+                  </Dropdown.Toggle>
+                  <Dropdown.Menu>
+                    <Dropdown.Item onClick={() => handleCopyToClipboard('template1')}>
+                      Copy to Gmail
+                    </Dropdown.Item>
+                  </Dropdown.Menu>
+                </Dropdown>
+                <div id="template1">
+                  <Template1 result={{ ...result, image_url: uploadedImage || result.image_url }} />
+                </div>
+              </div>
+              <div className="template-container">
+                <Dropdown className="template-options">
+                  <Dropdown.Toggle variant="secondary" id="dropdown-basic">
+                    •••
+                  </Dropdown.Toggle>
+                  <Dropdown.Menu>
+                    <Dropdown.Item onClick={() => handleCopyToClipboard('template2')}>
+                      Copy to Gmail
+                    </Dropdown.Item>
+                  </Dropdown.Menu>
+                </Dropdown>
+                <div id="template2">
+                  <Template2 result={{ ...result, image_url: uploadedImage || result.image_url }} />
+                </div>
+              </div>
             </>
             )
           }
@@ -92,5 +134,5 @@ const TemplateGeneration = () => {
     </div>
   );
 }
- 
+
 export default TemplateGeneration;
