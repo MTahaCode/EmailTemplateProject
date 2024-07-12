@@ -1,8 +1,7 @@
-import React from 'react'
-import "../Css/signup.css"
+import React from 'react';
+import "../Css/signup.css";
 import { GoogleLogin } from '@react-oauth/google';
 import { useNavigate } from "react-router-dom";
-
 
 const Signup = () => {
     const navigate = useNavigate();
@@ -17,39 +16,45 @@ const Signup = () => {
         // Handle failed login
     };
 
-  return (
-    <div class="signup-container">
-        <div class="signup-form">
-            <h1>Create an Account</h1>
-            <form id="signup-form">
-                <div class="form-group">
-                    <label for="username">Username</label>
-                    <input type="text" id="username" name="username" required />
-                </div>
-                <div class="form-group">
-                    <label for="email">Email</label>
-                    <input type="email" id="email" name="email" required />
-                </div>
-                <div class="form-group">
-                    <label for="password">Password</label>
-                    <input type="password" id="password" name="password" required />
-                </div>
-                <div class="form-group">
-                    <label for="confirm-password">Confirm Password</label>
-                    <input type="password" id="confirm-password" name="confirm-password" required />
-                </div>
-                <button type="submit" class="signup-button">Sign Up</button>
-                <div id="form-feedback" class="hidden">Sign up successful!</div>
-            </form>
-            <p>Already have an account? <a href="" onClick={() => navigate("/login")} >Login here</a></p>
-            <GoogleLogin
-                onSuccess={handleSuccess}
-                onFailure={handleFailure}
-                buttonText="Login with Google"
-            />
+    return (
+        <div className="signup-container">
+            <div className="signup-form">
+                <h1>Create an Account</h1>
+                <form id="signup-form">
+                    <div className="form-group">
+                        <label htmlFor="username">Username</label>
+                        <input type="text" id="username" name="username" required />
+                    </div>
+                    <div className="form-group">
+                        <label htmlFor="email">Email</label>
+                        <input type="email" id="email" name="email" required />
+                    </div>
+                    <div className="form-group">
+                        <label htmlFor="password">Password</label>
+                        <input type="password" id="password" name="password" required />
+                    </div>
+                    <div className="form-group">
+                        <label htmlFor="confirm-password">Confirm Password</label>
+                        <input type="password" id="confirm-password" name="confirm-password" required />
+                    </div>
+                    <button type="submit" className="signup-button">Sign Up</button>
+                    <div id="form-feedback" className="hidden">Sign up successful!</div>
+                </form>
+                <p>Already have an account? <span 
+                onClick={() => navigate("/login")} 
+                style={{
+                    cursor: "pointer",
+                    color: "blue",
+                }}
+            >Login here</span></p>
+                <GoogleLogin
+                    onSuccess={handleSuccess}
+                    onFailure={handleFailure}
+                    buttonText="Login with Google"
+                />
+            </div>
         </div>
-    </div>
-  )
-}
+    );
+};
 
-export default Signup
+export default Signup;

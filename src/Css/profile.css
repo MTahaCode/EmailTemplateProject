@@ -3,11 +3,13 @@ body {
     margin: 0;
     padding: 0;
     min-height: 100vh;
+    overflow-y: scroll; 
 }
-
 
 .profile_page-container {
     display: flex;
+    width: 100vw;
+    height: 100vh;
 }
 
 .profile_page-sidebar {
@@ -212,11 +214,3 @@ textarea {
         height: 40px;
     }
 }
-
-
-
-
-
-
-
-
