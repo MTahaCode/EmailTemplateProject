@@ -37,7 +37,7 @@ const ProfilePage = () => {
                 <div className="profile_page-logo">
                     <img src={stayaLogo} alt="Sendif Logo" />
                 </div>
-                <button className="profile_page-new-design">New Design</button>
+                <button className="profile_page-new-design" onClick={() => navigate("/template-generation")}>New Design</button>
                 <ul className="profile_page-menu">
                     <li><a href="#">My Designs</a></li>
                     <li><a href="#">Templates</a></li>

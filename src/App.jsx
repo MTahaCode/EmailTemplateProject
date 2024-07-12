@@ -25,6 +25,7 @@ function App() {
     <GoogleOAuthProvider clientId={clientId}>
       <Routes>
         <Route path="/signup" element={<Signup loginCredentials={loginCredentials} setLoginCredentials={setLoginCredentials}/>} />
+        <Route path="/signup" element={<Signup loginCredentials={loginCredentials} setLoginCredentials={setLoginCredentials}/>} />
         <Route path="/login" element={<Login loginCredentials={loginCredentials} setLoginCredentials={setLoginCredentials}/>} />
         <Route path="/profile" element={<ProfilePage loginCredentials={loginCredentials} setLoginCredentials={setLoginCredentials}/>} />
         <Route path="/template-generation" element={<TemplateGeneration loginCredentials={loginCredentials} setLoginCredentials={setLoginCredentials}/>} />
