@@ -3,7 +3,7 @@ import "../Css/login.css"
 import { useNavigate } from 'react-router-dom'
 
 const Login = () => {
-    const navigate=useNavigate;
+    const navigate=useNavigate();
   return (
     <div className="login-container">
         <div className="login-form">
@@ -20,13 +20,6 @@ const Login = () => {
                 <button type="submit" className="login-button">Login</button>
                 <div id="form-feedback" className="hidden">Login successful!</div>
             </form>
-            <p>Don't have an account? <span 
-                onClick={() => navigate("/signup")}
-                style={{
-                    cursor: "pointer",
-                    color: "blue",
-                }}
-            >Sign up here</span></p>
             <p>Don't have an account? <span 
                 onClick={() => navigate("/signup")}
                 style={{
