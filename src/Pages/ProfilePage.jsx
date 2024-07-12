@@ -3,8 +3,11 @@ import "../Css/profile.css"
 import stayaLogo from "../Media/stayaLogo.jpeg"
 import sample from "../Media/sample.png"
 import dummy from "../Media/dummy.jfif"
+import { useNavigate } from "react-router-dom";
 
 const ProfilePage = () => {
+
+    const navigate = useNavigate();
 
     const selectColor = (element) => {
         // document.querySelectorAll('.color').forEach(function(color) {
@@ -18,7 +21,7 @@ const ProfilePage = () => {
                 <div className="profile_page-logo">
                     <img src={stayaLogo} alt="Sendif Logo" />
                 </div>
-                <button className="profile_page-new-design">New Design</button>
+                <button className="profile_page-new-design" onClick={() => navigate("/template-generation")}>New Design</button>
                 <ul className="profile_page-menu">
                     <li><a href="#">My Designs</a></li>
                     <li><a href="#">Templates</a></li>

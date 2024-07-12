@@ -3,7 +3,6 @@ import "../Css/signup.css"
 import { GoogleLogin } from '@react-oauth/google';
 import { useNavigate } from "react-router-dom";
 
-
 const Signup = () => {
     const navigate = useNavigate();
 
@@ -41,7 +40,13 @@ const Signup = () => {
                 <button type="submit" class="signup-button">Sign Up</button>
                 <div id="form-feedback" class="hidden">Sign up successful!</div>
             </form>
-            <p>Already have an account? <a href="" onClick={() => navigate("/login")} >Login here</a></p>
+            <p>Already have an account? <span 
+                onClick={() => navigate("/login")} 
+                style={{
+                    cursor: "pointer",
+                    color: "blue",
+                }}
+            >Login here</span></p>
             <GoogleLogin
                 onSuccess={handleSuccess}
                 onFailure={handleFailure}
