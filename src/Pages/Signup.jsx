@@ -3,24 +3,57 @@ import "../Css/signup.css";
 import { GoogleLogin } from '@react-oauth/google';
 import { useNavigate } from "react-router-dom";
 
-const Signup = () => {
+const Signup = ({ loginCredentials, setLoginCredentials }) => {
     const navigate = useNavigate();
 
     const handleSuccess = (response) => {
         console.log('Login Success:', response);
         // Handle successful login, e.g., set user state or send token to backend
     };
-    
+
     const handleFailure = (error) => {
         console.log('Login Failure:', error);
         // Handle failed login
+    };
+
+    const handleSubmit = async (event) => {
+        event.preventDefault();
+        const form = event.target;
+        const formData = new FormData(form);
+        const data = {
+            username: formData.get('username'),
+            email: formData.get('email'),
+            password: formData.get('password')
+        };
+
+        try {
+            const response = await fetch('http://localhost:4000/signup', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            });
+
+            if (response.ok) {
+                document.getElementById('form-feedback').classList.remove('hidden');
+                form.reset();
+                // Redirect to login page after successful signup
+                navigate('/login');
+            } else {
+                const errorData = await response.json();
+                console.error('Error:', errorData);
+            }
+        } catch (error) {
+            console.error('Error:', error);
+        }
     };
 
     return (
         <div className="signup-container">
             <div className="signup-form">
                 <h1>Create an Account</h1>
-                <form id="signup-form">
+                <form id="signup-form" onSubmit={handleSubmit}>
                     <div className="form-group">
                         <label htmlFor="username">Username</label>
                         <input type="text" id="username" name="username" required />
@@ -41,12 +74,12 @@ const Signup = () => {
                     <div id="form-feedback" className="hidden">Sign up successful!</div>
                 </form>
                 <p>Already have an account? <span 
-                onClick={() => navigate("/login")} 
-                style={{
-                    cursor: "pointer",
-                    color: "blue",
-                }}
-            >Login here</span></p>
+                    onClick={() => navigate("/login")} 
+                    style={{
+                        cursor: "pointer",
+                        color: "blue",
+                    }}
+                >Login here</span></p>
                 <GoogleLogin
                     onSuccess={handleSuccess}
                     onFailure={handleFailure}
