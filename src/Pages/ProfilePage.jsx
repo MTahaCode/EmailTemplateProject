@@ -6,7 +6,7 @@ import dummy from "../Media/dummy.jfif";
 import { useNavigate } from 'react-router-dom';
 
 const ProfilePage = () => {
-    const navigate=useNavigate;
+    const navigate=useNavigate();
     const [logoPreview, setLogoPreview] = useState(dummy);
     const [formFeedback, setFormFeedback] = useState(false);
 

@@ -1,38 +1,36 @@
-import React from 'react';
+import React, { useState } from 'react';
 import "../Css/login.css";
 import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
     const navigate = useNavigate();
 
-    const handleSubmit = async (event) => {
-        event.preventDefault();
-        const form = event.target;
-        const formData = new FormData(form);
-        const data = {
-            email: formData.get('email'),
-            password: formData.get('password')
-        };
+    const handleSubmit = async (e) => {
+        e.preventDefault();
 
         try {
-            // Using localhost:4000 for the backend
-            const response = await fetch('http://localhost:4000/login', { 
+            const formData = new URLSearchParams();
+            formData.append('email', email);
+            formData.append('password', password);
+
+            const response = await fetch(`${process.env.REACT_APP_LOGIN_SIGNUP_URL}/login`, {
                 method: 'POST',
                 headers: {
-                    'Content-Type': 'application/json'
+                    'Content-Type': 'application/x-www-form-urlencoded',
                 },
-                body: JSON.stringify(data)
+                body: formData,
             });
 
-            if (response.ok) {
-                document.getElementById('form-feedback').classList.remove('hidden');
-                form.reset();
-                // Redirect to profile page after successful login
-                navigate('/profile');
-            } else {
-                const errorData = await response.json();
-                console.error('Error:', errorData);
+            if (!response.ok) {
+                throw new Error('Failed to login');
             }
+
+            const data = await response.json();
+            console.log('Login successful:', data);
+            // Optionally navigate to a different page after login
+            navigate('/profile');
         } catch (error) {
             console.error('Error:', error);
         }
@@ -45,11 +43,21 @@ const Login = () => {
                 <form id="login-form" onSubmit={handleSubmit}>
                     <div className="form-group">
                         <label htmlFor="email">Email</label>
-                        <input type="email" id="email" name="email" required />
+                        <input
+                            type="email"
+                            value={email}
+                            onChange={(e) => setEmail(e.target.value)}
+                            placeholder="Email"
+                        />
                     </div>
                     <div className="form-group">
                         <label htmlFor="password">Password</label>
-                        <input type="password" id="password" name="password" required />
+                        <input
+                            type="password"
+                            value={password}
+                            onChange={(e) => setPassword(e.target.value)}
+                            placeholder="Password"
+                        />
                     </div>
                     <button type="submit" className="login-button">Login</button>
                     <div id="form-feedback" className="hidden">Login successful!</div>
@@ -64,6 +72,6 @@ const Login = () => {
             </div>
         </div>
     );
-}
+};
 
 export default Login;

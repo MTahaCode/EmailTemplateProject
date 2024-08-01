@@ -1,5 +1,5 @@
-* {
-    box-sizing: border-box; /* this includes border and margins to size */
+*, *::before, *::after {
+    box-sizing: border-box;
 }
 
 body {
@@ -8,6 +8,7 @@ body {
     background-color: #121212;
     color: #e0e0e0;
     overflow: hidden;
+    box-sizing: border-box;
 }
 
 .fullScreen {
@@ -15,6 +16,7 @@ body {
     flex-direction: column;
     width: 100vw;
     height: 100vh;
+    /* border: 2px solid red; */
 }
 
 .header {

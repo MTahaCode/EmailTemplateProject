@@ -17,37 +17,31 @@ const Signup = ({ loginCredentials, setLoginCredentials }) => {
     };
 
     const handleSubmit = async (event) => {
-        event.preventDefault();
-        const form = event.target;
-        const formData = new FormData(form);
-        const data = {
-            username: formData.get('username'),
-            email: formData.get('email'),
-            password: formData.get('password')
-        };
-
-        try {
-            const response = await fetch('http://localhost:4000/signup', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(data)
-            });
-
-            if (response.ok) {
-                document.getElementById('form-feedback').classList.remove('hidden');
-                form.reset();
-                // Redirect to login page after successful signup
-                navigate('/login');
-            } else {
-                const errorData = await response.json();
-                console.error('Error:', errorData);
-            }
-        } catch (error) {
-            console.error('Error:', error);
-        }
-    };
+      event.preventDefault();
+      const form = event.target;
+      const formData = new FormData(form);
+  
+      try {
+          const response = await fetch(`${process.env.REACT_APP_LOGIN_SIGNUP_URL}/register`, {
+              method: 'POST',
+              body: formData
+          });
+  
+          if (response.ok) {
+              document.getElementById('form-feedback').classList.remove('hidden');
+              form.reset();
+              // Redirect to login page after successful signup
+              navigate('/login');
+          } else {
+              const errorData = await response.json();
+              console.error('Error:', errorData);
+          }
+      } catch (error) {
+          console.error('Error:', error);
+      }
+  };
+  
+      
 
     return (
         <div className="signup-container">
