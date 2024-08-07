@@ -49,7 +49,7 @@ const Login = ({loginCredentials, setLoginCredentials}) => {
                             type="email"
                             value={email}
                             onChange={(e) => setEmail(e.target.value)}
-                            placeholder="Email"
+                            placeholder="email"
                         />
                     </div>
                     <div className="form-group">
@@ -58,7 +58,7 @@ const Login = ({loginCredentials, setLoginCredentials}) => {
                             type="password"
                             value={password}
                             onChange={(e) => setPassword(e.target.value)}
-                            placeholder="Password"
+                            placeholder="password"
                         />
                     </div>
                     <button type="submit" className="login-button">Login</button>

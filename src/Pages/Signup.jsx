@@ -50,19 +50,19 @@ const Signup = ({ loginCredentials, setLoginCredentials }) => {
                 <form id="signup-form" onSubmit={handleSubmit}>
                     <div className="form-group">
                         <label htmlFor="username">Username</label>
-                        <input type="text" id="username" name="username" required />
+                        <input type="text" id="username" name="username" required placeholder="username"/>
                     </div>
                     <div className="form-group">
                         <label htmlFor="email">Email</label>
-                        <input type="email" id="email" name="email" required />
+                        <input type="email" id="email" name="email" required placeholder="email"/>
                     </div>
                     <div className="form-group">
                         <label htmlFor="password">Password</label>
-                        <input type="password" id="password" name="password" required />
+                        <input type="password" id="password" name="password" required placeholder="password"/>
                     </div>
                     <div className="form-group">
                         <label htmlFor="confirm-password">Confirm Password</label>
-                        <input type="password" id="confirm-password" name="confirm-password" required />
+                        <input type="password" id="confirm-password" name="confirm-password" required placeholder="confirm"/>
                     </div>
                     <button type="submit" className="signup-button">Sign Up</button>
                     <div id="form-feedback" className="hidden">Sign up successful!</div>
