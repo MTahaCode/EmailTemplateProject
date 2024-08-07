@@ -127,7 +127,7 @@ body {
     transform: translateY(-2px);
 }
 
-input[type="text"], input[type="email"] {
+/* input[type="text"], input[type="email"] {
     width: 100%;
     padding: 10px;
     margin: 8px 0;
@@ -144,7 +144,7 @@ input[type="text"]:focus, input[type="email"]:focus {
     border-color: #00acc1;
     box-shadow: 0 0 5px rgba(0, 172, 193, 0.5);
     outline: none;
-}
+} */
 
 .remove-image-button {
     display: block;
