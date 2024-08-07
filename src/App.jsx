@@ -6,6 +6,7 @@ import Signup from './Pages/Signup';
 import Login from './Pages/Login';
 import ProfilePage from './Pages/ProfilePage';
 import GlobalContext from './Context/GlobalContext';
+import useGlobalContext from "./Hooks/useGlobalContext"
 
 import './Css/templateGeneration.css';
 
