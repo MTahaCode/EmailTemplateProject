@@ -5,7 +5,13 @@ import { useNavigate } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import "../Css/profile.css";
 
-const TemplateGeneration = ({menuVisible, setMenuVisible, tmplateForEditor, setTemplateForEditor}) => {
+const TemplateGeneration = ({
+    menuVisible, 
+    setMenuVisible,
+    emplateForEditor, 
+    setTemplateForEditor,
+    loginCredentials
+}) => {
 
     const navigate = useNavigate();
 
@@ -92,6 +98,43 @@ const TemplateGeneration = ({menuVisible, setMenuVisible, tmplateForEditor, setT
         setLoading(false);
     };
 
+    const saveToDatabase = async (templateId) => {
+    
+        console.log(loginCredentials)
+    
+        const extractedHtml = extractHtml(templateId);
+        if (extractedHtml === null) {
+        return;
+        }
+    
+        try {
+        const response = await fetch(`${process.env.REACT_APP_LOGIN_SIGNUP_URL}/template`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                user_id: loginCredentials.user_id,
+                template: extractedHtml,
+            }),
+        });
+    
+        if (!response.ok) {
+            const errorText = await response.text();
+            throw new Error(`Error: ${response.status} ${response.statusText} - ${errorText}`);
+        }
+    
+        const data = await response.json();
+        
+        alert('Successfully added template:', data);
+    
+        navigate('/profile');
+        } catch (error) {
+
+            alert('Error:', error);
+        }
+    }
+
     return (
         <>
             <div className={`profile_page-main-content ${menuVisible ? 'menu-visible' : ''}`}>
@@ -123,6 +166,9 @@ const TemplateGeneration = ({menuVisible, setMenuVisible, tmplateForEditor, setT
                             </button>
                             <button className="edit-button" onClick={() => sendToEditor("template1")}>
                                 Edit Template
+                            </button>
+                            <button className="edit-button" onClick={() => saveToDatabase("template1")}>
+                                Save Template
                             </button>
                             <div id="template1">
                                 <Template1 result={result} />

@@ -1,5 +1,5 @@
-* {
-    box-sizing: border-box; /* this includes border and margins to size */
+/* * {
+    box-sizing: border-box;
 }
 
 .inputContainer p{
@@ -34,7 +34,7 @@
     height: 100%;
     padding: 20px;
     gap: 20px;
-    background: linear-gradient(135deg, #2c3e50, #3498db); /* Added gradient background */
+    background: linear-gradient(135deg, #2c3e50, #3498db); 
     overflow-y:auto ;
 }
 
@@ -105,8 +105,8 @@
 }
 
 .button {
-    background-color: #ff6347; /* Gray background */
-    color: white; /* White text */
+    background-color: #ff6347; 
+    color: white;
     padding: 10px 20px;
     border: none;
     border-radius: 4px;
@@ -116,11 +116,11 @@
 }
 
 .button:hover {
-    background-color: #5a6268; /* Slightly darker gray on hover */
+    background-color: #5a6268; 
     transform: translateY(-2px);
 }
 
-/* input[type="text"], input[type="email"] {
+input[type="text"], input[type="email"] {
     width: 100%;
     padding: 10px;
     margin: 8px 0;
@@ -137,7 +137,7 @@ input[type="text"]:focus, input[type="email"]:focus {
     border-color: #00acc1;
     box-shadow: 0 0 5px rgba(0, 172, 193, 0.5);
     outline: none;
-} */
+}
 
 .remove-image-button {
     display: block;
@@ -182,4 +182,4 @@ input[type="text"]:focus, input[type="email"]:focus {
     top: 10px;
     right: 10px;
     z-index: 100;
-}
+} */
