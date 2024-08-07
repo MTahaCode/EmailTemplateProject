@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import "../Css/login.css";
 import { useNavigate } from 'react-router-dom';
 
-const Login = () => {
+const Login = ({loginCredentials, setLoginCredentials}) => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const navigate = useNavigate();
@@ -28,7 +28,9 @@ const Login = () => {
             }
 
             const data = await response.json();
+            
             console.log('Login successful:', data);
+            setLoginCredentials(data);
             // Optionally navigate to a different page after login
             navigate('/profile');
         } catch (error) {
