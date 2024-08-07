@@ -148,6 +148,8 @@ const ProfilePage = ({
                         loginCredentials={loginCredentials} 
                         menuVisible={menuVisible} 
                         setMenuVisible={setMenuVisible}
+                        templateForEditor={templateForEditor} 
+                        setTemplateForEditor={setTemplateForEditor}
                     />} 
                 />
                 <Route 

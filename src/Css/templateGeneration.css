@@ -2,13 +2,6 @@
     box-sizing: border-box; /* this includes border and margins to size */
 }
 
-body {
-    margin: 0;
-    font-family: 'Roboto', sans-serif;
-    /* background-color: #121212; */
-    /* color: #e0e0e0; */
-    overflow: hidden;
-}
 .inputContainer p{
     color: white;
 }
