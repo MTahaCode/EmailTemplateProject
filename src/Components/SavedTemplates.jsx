@@ -116,7 +116,7 @@ const SavedTemplates = ({
                             </div>
                         ) : templateList.length > 0 ? (
                             templateList.map((templateObj, index) => 
-                                <div className="template-container">
+                                <div className="template-container" style={{width: "fit-content"}}>
                                     <button className="copy-button" onClick={() => handleCopyToClipboard(`Template-${index}`)}>
                                         Copy to Clipboard
                                     </button>
