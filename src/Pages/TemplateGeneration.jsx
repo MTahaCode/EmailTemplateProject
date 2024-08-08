@@ -6,13 +6,17 @@ import { useNavigate } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import "../Css/profile.css";
 
+import useGlobalContext from '../Hooks/useGlobalContext';
+
+
 const TemplateGeneration = ({
     menuVisible, 
     setMenuVisible,
-    emplateForEditor, 
+    templateForEditor, 
     setTemplateForEditor,
-    loginCredentials
 }) => {
+
+    const { globalState } = useGlobalContext();
 
     const navigate = useNavigate();
 
@@ -41,19 +45,17 @@ const TemplateGeneration = ({
         setMenuVisible(!menuVisible);
     };
     
-    // useEffect(() => handleLogoChange(null));
-
-    const createFileFromURL = async (url) => {
-        try {
-            const response = await fetch(url);
-            const blob = await response.blob();
-            // Create a File object with the Blob
-            return new File([blob], "default.png", { type: blob.type });
-        } catch (error) {
-            console.error('Error creating file from URL:', error);
-            return null;
-        }
-    };
+    // const createFileFromURL = async (url) => {
+    //     try {
+    //         const response = await fetch(url);
+    //         const blob = await response.blob();
+    //         // Create a File object with the Blob
+    //         return new File([blob], "default.png", { type: blob.type });
+    //     } catch (error) {
+    //         console.error('Error creating file from URL:', error);
+    //         return null;
+    //     }
+    // };
 
     const handleLogoChange = async (event) => {
         const file = event.target.files[0];
@@ -129,7 +131,7 @@ const TemplateGeneration = ({
 
     const saveToDatabase = async (templateId) => {
     
-        console.log(loginCredentials)
+        console.log(globalState.loginCredentials)
     
         const extractedHtml = extractHtml(templateId);
         if (extractedHtml === null) {
@@ -143,7 +145,7 @@ const TemplateGeneration = ({
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify({
-                user_id: loginCredentials.user_id,
+                user_id: globalState.loginCredentials.user_id,
                 template: extractedHtml,
             }),
         });

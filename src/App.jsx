@@ -161,12 +161,6 @@ function App() {
     "schemaVersion": 16
   });
 
-  const setLoginCredentials = (loginCreds) => {
-    updateGlobalState({
-        loginCredentials: loginCreds,
-    });
-  }
-
   return (
     <GoogleOAuthProvider clientId={clientId}>
         <Routes>

@@ -70,7 +70,6 @@ const ProfilePage = ({
                 <Route 
                     path="template-generation" 
                     element={<TemplateGeneration 
-                        loginCredentials={globalState.loginCredentials} 
                         menuVisible={menuVisible} 
                         setMenuVisible={setMenuVisible}
                         templateForEditor={templateForEditor} 
