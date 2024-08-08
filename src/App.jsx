@@ -180,9 +180,7 @@ function App() {
             />
             <Route 
                 path="/profile/*" 
-                element={<ProfilePage  
-                    loginCredentials={globalState.loginCredentials} 
-                    setLoginCredentials={setLoginCredentials} 
+                element={<ProfilePage 
                     templateForEditor={templateForEditor}
                     setTemplateForEditor={setTemplateForEditor}
                 />}

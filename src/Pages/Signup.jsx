@@ -13,7 +13,6 @@ const Signup = () => {
 
     const handleFailure = (error) => {
         console.log('Login Failure:', error);
-        // Handle failed login
     };
 
     const handleSubmit = async (event) => {
