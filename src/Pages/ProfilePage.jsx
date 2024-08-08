@@ -79,9 +79,7 @@ const ProfilePage = ({
                 <Route 
                     path="template-editor" 
                     element={<Editor 
-                        loginCredentials={globalState.loginCredentials} 
                         templateForEditor={templateForEditor} 
-                        setTemplateForEditor={setTemplateForEditor}
                     />}
                 />
                 <Route 
