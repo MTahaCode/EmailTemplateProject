@@ -111,7 +111,7 @@ const Template1 = ({ result, logo, links }) => {
                 />
             </Helmet>
             <div style={styles.bannerHeader}>
-                <img src={logo} alt="Logo" style={styles.logo} />
+                {logo !== null && <img src={logo} alt="Logo" style={styles.logo} />}
                 <h1 style={styles.bannerHeaderH1}>{result.subject}</h1>
             </div>
             <div style={styles.bannerMain}>

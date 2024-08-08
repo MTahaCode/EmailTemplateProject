@@ -145,7 +145,7 @@ const Template2 = ({ result, logo, links }) => {
                 />
             </Helmet>
       <div style={styles.banner2Hero}>
-        <img src={logo} alt="Logo" style={styles.logo} />
+        {logo !== null && <img src={logo} alt="Logo" style={styles.logo} />}
         <div style={styles.banner2HeroOverlay}>
           <div style={styles.banner2HeroContent}>
             <h1 style={styles.banner2HeroContentH1}>{result.subject}</h1>

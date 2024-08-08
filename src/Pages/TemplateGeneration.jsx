@@ -283,7 +283,7 @@ const TemplateGeneration = ({
                                 <div id="template1">
                                     <Template1 
                                         result={result} 
-                                        logo={`data:${selectedLogo.fileType};base64,${selectedLogo.base64String}`} 
+                                        logo={selectedLogo.base64String !== "" ? `data:${selectedLogo.fileType};base64,${selectedLogo.base64String}` : null} 
                                         links={links}
                                     />
                                 </div>
@@ -291,7 +291,7 @@ const TemplateGeneration = ({
                                 <div id="template2">
                                     <Template2 
                                         result={result} 
-                                        logo={`data:${selectedLogo.fileType};base64,${selectedLogo.base64String}`} 
+                                        logo={selectedLogo.base64String !== "" ? `data:${selectedLogo.fileType};base64,${selectedLogo.base64String}` : null} 
                                         links={links}
                                     />
                                 </div>
