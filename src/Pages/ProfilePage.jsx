@@ -7,7 +7,6 @@ import { useNavigate } from 'react-router-dom';
 import Editor from './Editor';
 import TemplateGeneration from './TemplateGeneration';
 import SavedTemplates from '../Components/SavedTemplates';
-import useGlobalContext from '../Hooks/useGlobalContext';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -17,7 +16,6 @@ const ProfilePage = ({
     templateForEditor,
     setTemplateForEditor
 }) => {
-    const { globalState } = useGlobalContext();
 
     const navigate = useNavigate();
 
@@ -85,7 +83,6 @@ const ProfilePage = ({
                 <Route 
                     path="saved" 
                     element={<SavedTemplates 
-                        loginCredentials={globalState.loginCredentials}  
                         setTemplateForEditor={setTemplateForEditor}
                         menuVisible={menuVisible}
                         setMenuVisible={setMenuVisible}
