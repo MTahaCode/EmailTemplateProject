@@ -1,8 +1,11 @@
 import React, { useState } from 'react';
 import "../Css/login.css";
 import { useNavigate } from 'react-router-dom';
+import useGlobalContext from '../Hooks/useGlobalContext';
 
-const Login = ({ loginCredentials, setLoginCredentials }) => {
+const Login = (/*{ loginCredentials, setLoginCredentials }*/) => {
+    const { globalState, updateGlobalState } = useGlobalContext();
+
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
@@ -30,7 +33,9 @@ const Login = ({ loginCredentials, setLoginCredentials }) => {
 
             if (response.ok && data.message === 'Login successful!') {
                 console.log('Login successful:', data);
-                setLoginCredentials(data);
+                updateGlobalState({
+                    loginCredentials: data,
+                })
                 navigate('/profile');
             } else {
                 setError(data.error || 'Incorrect email or password.');

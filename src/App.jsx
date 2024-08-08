@@ -162,7 +162,9 @@ function App() {
   });
 
   const setLoginCredentials = (loginCreds) => {
-    updateGlobalState(loginCreds);
+    updateGlobalState({
+        loginCredentials: loginCreds,
+    });
   }
 
   return (
@@ -177,10 +179,7 @@ function App() {
             />
             <Route 
                 path="/login" 
-                element={<Login 
-                    loginCredentials={globalState.loginCredentials} 
-                    setLoginCredentials={setLoginCredentials} 
-                />} 
+                element={<Login />} 
             />
             <Route 
                 path="/profile/*" 
