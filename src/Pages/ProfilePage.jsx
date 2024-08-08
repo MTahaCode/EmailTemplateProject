@@ -87,8 +87,7 @@ const ProfilePage = ({
                 <Route 
                     path="saved" 
                     element={<SavedTemplates 
-                        loginCredentials={globalState.loginCredentials} 
-                        templateForEditor={templateForEditor} 
+                        loginCredentials={globalState.loginCredentials}  
                         setTemplateForEditor={setTemplateForEditor}
                         menuVisible={menuVisible}
                         setMenuVisible={setMenuVisible}

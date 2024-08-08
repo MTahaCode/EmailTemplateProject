@@ -1,16 +1,17 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { Navigate, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import "../Css/profile.css";
+
+import useGlobalContext from '../Hooks/useGlobalContext';
 
 
 const SavedTemplates = ({
-    loginCredentials, 
-    setLoginCredentials, 
     menuVisible, 
     setMenuVisible,
     setTemplateForEditor,
-    templateForEditor
 }) => {
+
+    const { globalState } = useGlobalContext();
 
     const navigate = useNavigate();
 
@@ -19,12 +20,12 @@ const SavedTemplates = ({
 
     const getTemplates = async () => {
 
-        console.log(loginCredentials)
+        console.log(globalState.loginCredentials);
 
         setLoading(true);
 
         try {
-            const response = await fetch(`${process.env.REACT_APP_LOGIN_SIGNUP_URL}/templates/${loginCredentials.user_id}`, {
+            const response = await fetch(`${process.env.REACT_APP_LOGIN_SIGNUP_URL}/templates/${globalState.loginCredentials.user_id}`, {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',
