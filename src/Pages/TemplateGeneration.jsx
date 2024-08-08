@@ -80,13 +80,36 @@ const TemplateGeneration = ({
 
     const handleCopyToClipboard = (id) => {
         const templateElement = document.getElementById(id);
+        console.log(templateElement);
+    
+        if (!templateElement) {
+            alert("Element not found");
+            return;
+        }
+        
         const range = document.createRange();
         range.selectNode(templateElement);
+
+        // Remove any existing selections
         window.getSelection().removeAllRanges();
+
+        // Add the new range
         window.getSelection().addRange(range);
-        document.execCommand("copy");
-        window.getSelection().removeAllRanges();
-        alert("Template copied to clipboard!");
+        
+        // Execute the copy command
+        try {
+            const successful = document.execCommand("copy");
+            if (successful) {
+                alert("Template copied to clipboard!");
+            } else {
+                alert("Failed to copy template");
+            }
+        } catch (err) {
+            alert("Failed to copy template");
+    }
+
+    // Clear the selection
+    window.getSelection().removeAllRanges();
     };
 
     const extractHtml = (templateId) => {
