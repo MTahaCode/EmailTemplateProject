@@ -5,10 +5,8 @@ import { useState, useEffect, useRef } from 'react';
 import Signup from './Pages/Signup';
 import Login from './Pages/Login';
 import ProfilePage from './Pages/ProfilePage';
-import GlobalContext from './Context/GlobalContext';
-import useGlobalContext from "./Hooks/useGlobalContext"
 
-import './Css/templateGeneration.css';
+import useGlobalContext from "./Hooks/useGlobalContext"
 
 const clientId = '359450186285-snvq9iqkcmddvve4i8eb74qokpueud0o.apps.googleusercontent.com';
 
@@ -24,12 +22,16 @@ function App() {
     }
   });
 
-  const [loginCredentials, setLoginCredentials] = useState({
-    user_id: 3,
-    username: "",
-    email: "",
-    password: ""
-  });
+  const { globalState, updateGlobalState } = useGlobalContext();
+
+  useEffect(() => {
+    updateGlobalState({loginCredentials: {
+        user_id: 0,
+        username: "",
+        email: "",
+        password: ""
+      }});
+  }, []);
 
   const [templateForEditor, setTemplateForEditor] = useState({
     "counters": {
@@ -159,37 +161,38 @@ function App() {
     "schemaVersion": 16
   });
 
+  const setLoginCredentials = (loginCreds) => {
+    updateGlobalState(loginCreds);
+  }
 
   return (
-    <GlobalContext>
-        <GoogleOAuthProvider clientId={clientId}>
-            <Routes>
-                <Route 
-                    path="/signup" 
-                    element={<Signup 
-                        loginCredentials={loginCredentials} 
-                        setLoginCredentials={setLoginCredentials}
-                    />} 
-                />
-                <Route 
-                    path="/login" 
-                    element={<Login 
-                        loginCredentials={loginCredentials} 
-                        setLoginCredentials={setLoginCredentials} 
-                    />} 
-                />
-                <Route 
-                    path="/profile/*" 
-                    element={<ProfilePage  
-                        loginCredentials={loginCredentials} 
-                        setLoginCredentials={setLoginCredentials} 
-                        templateForEditor={templateForEditor}
-                        setTemplateForEditor={setTemplateForEditor}
-                    />}
-                />
-            </Routes>
-        </GoogleOAuthProvider>
-    </GlobalContext>
+    <GoogleOAuthProvider clientId={clientId}>
+        <Routes>
+            <Route 
+                path="/signup" 
+                element={<Signup 
+                    loginCredentials={globalState.loginCredentials} 
+                    setLoginCredentials={setLoginCredentials}
+                />} 
+            />
+            <Route 
+                path="/login" 
+                element={<Login 
+                    loginCredentials={globalState.loginCredentials} 
+                    setLoginCredentials={setLoginCredentials} 
+                />} 
+            />
+            <Route 
+                path="/profile/*" 
+                element={<ProfilePage  
+                    loginCredentials={globalState.loginCredentials} 
+                    setLoginCredentials={setLoginCredentials} 
+                    templateForEditor={templateForEditor}
+                    setTemplateForEditor={setTemplateForEditor}
+                />}
+            />
+        </Routes>
+    </GoogleOAuthProvider>
   );
 }
 

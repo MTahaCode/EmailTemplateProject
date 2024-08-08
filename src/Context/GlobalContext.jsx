@@ -6,7 +6,7 @@ export const GlobalContext = ({ children }) => {
 
     const [globalState, setGlobalState] = useState({});
 
-    const updateState = (newStates) => {
+    const updateGlobalState = (newStates) => {
         setGlobalState(prevStates => {
             return {
                 ...prevStates,
@@ -16,7 +16,7 @@ export const GlobalContext = ({ children }) => {
     }
 
     return (
-        <Context.Provider value={{globalState, updateState}}>
+        <Context.Provider value={{globalState, updateGlobalState}}>
             {children}
         </Context.Provider>
     )
