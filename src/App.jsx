@@ -172,10 +172,7 @@ function App() {
         <Routes>
             <Route 
                 path="/signup" 
-                element={<Signup 
-                    loginCredentials={globalState.loginCredentials} 
-                    setLoginCredentials={setLoginCredentials}
-                />} 
+                element={<Signup />} 
             />
             <Route 
                 path="/login" 

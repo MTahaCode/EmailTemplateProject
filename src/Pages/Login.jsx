@@ -3,7 +3,7 @@ import "../Css/login.css";
 import { useNavigate } from 'react-router-dom';
 import useGlobalContext from '../Hooks/useGlobalContext';
 
-const Login = (/*{ loginCredentials, setLoginCredentials }*/) => {
+const Login = () => {
     const { globalState, updateGlobalState } = useGlobalContext();
 
     const [email, setEmail] = useState('');

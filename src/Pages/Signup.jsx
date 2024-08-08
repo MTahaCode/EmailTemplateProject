@@ -3,13 +3,12 @@ import "../Css/signup.css";
 import { GoogleLogin } from '@react-oauth/google';
 import { useNavigate } from "react-router-dom";
 
-const Signup = ({ loginCredentials, setLoginCredentials }) => {
+const Signup = () => {
     const navigate = useNavigate();
     const [isFading, setIsFading] = useState(false);
 
     const handleSuccess = (response) => {
         console.log('Login Success:', response);
-        // Handle successful login, e.g., set user state or send token to backend
     };
 
     const handleFailure = (error) => {
